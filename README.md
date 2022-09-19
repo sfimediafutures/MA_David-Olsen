@@ -1,7 +1,5 @@
 # vis.features
 
-## In this current state of the project the frontend is not hooked up to the frontend. The frontend instead is filled with data from a public movie database, but this data will be replaced with data from the backend API. 
-
 ### Frontend 
 Contains frontend written in React based on https://github.com/trananhtuat/react-movie
 
