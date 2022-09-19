@@ -148,8 +148,17 @@ def get_image_features(filename, scale_percent):
 
         # get_image_colors returns a dictionary
         # therefore this is merged with the image_dict
-        color_dict = get_image_colors(img)
-        image_dict = image_dict | color_dict
+        rgb_color_dict = get_image_colors(img)
+
+        hex_color_dict = {
+            'hex_0': '#%02x%02x%02x' % (int(rgb_color_dict['color_channel_0']), int(rgb_color_dict['color_channel_1']), int(rgb_color_dict['color_channel_2'])),
+            'hex_1': '#%02x%02x%02x' % (int(rgb_color_dict['color_channel_3']), int(rgb_color_dict['color_channel_4']), int(rgb_color_dict['color_channel_5'])),
+            'hex_2': '#%02x%02x%02x' % (int(rgb_color_dict['color_channel_6']), int(rgb_color_dict['color_channel_7']), int(rgb_color_dict['color_channel_8'])),
+            'hex_3': '#%02x%02x%02x' % (int(rgb_color_dict['color_channel_9']), int(rgb_color_dict['color_channel_10']), int(rgb_color_dict['color_channel_11'])),
+            'hex_4': '#%02x%02x%02x' % (int(rgb_color_dict['color_channel_12']), int(rgb_color_dict['color_channel_13']), int(rgb_color_dict['color_channel_14']))
+        }
+
+        image_dict = image_dict | hex_color_dict
         #image_dict['dominant_color'] = [y for x in image_dict['dominant_color'] for y in x ]
         
     except Exception as e:
@@ -175,5 +184,5 @@ def get_content(filename, uri):
 
 
 if __name__ == '__main__': 
-   feats = get_image_features('dog.jpg', 100)
+   feats = get_image_features('/Users/davidkvasnesolsen/Desktop/final/mongo-backend/dog.jpg', 100)
    print(feats)

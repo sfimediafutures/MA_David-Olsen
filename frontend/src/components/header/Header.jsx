@@ -15,6 +15,10 @@ const headerNav = [
         display: 'Movies',
         path: '/movie'
     },
+    {
+        display: 'Upload',
+        path: '/upload'
+    },
 ];
 
 const Header = () => {

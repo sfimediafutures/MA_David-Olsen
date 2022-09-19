@@ -10,7 +10,7 @@ import { category, movieType, tvType } from '../api/tmdbApi';
 const Home = () => {
     return (
         <>
-            <HeroSlide/>
+         
             <div className="container">
                 <div className="section mb-3">
                     <div className="section__header mb-2">
@@ -27,3 +27,5 @@ const Home = () => {
 }
 
 export default Home;
+
+//<HeroSlide/>

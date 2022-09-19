@@ -13,9 +13,9 @@ const MovieCard = props => {
 
     const item  = props.item;
 
-    const link = '/' + category[props.category] + '/' + item.id;
+    const link = '/' + category[props.category] + '/' + item.imdbID;
 
-    const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+    const bg = apiConfig.w500Image(item.Poster);
 
     return (
         <Link to={link}>
@@ -24,7 +24,7 @@ const MovieCard = props => {
                     <i className="bx bx-play"></i>
                 </Button>
             </div>
-            <h3>{item.title || item.name}</h3>
+            <h3>{item.Title}</h3>
         </Link>
     );
 }
