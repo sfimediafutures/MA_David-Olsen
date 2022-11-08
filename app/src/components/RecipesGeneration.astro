@@ -1,0 +1,195 @@
+---
+export interface Props {
+    title: string,
+    body?: string,
+    url?: string,
+	questionId?: string,
+    usierId?: string,
+	maxtime?: number,
+    reccommendation?: string,
+}
+
+
+const {url = 'http://0.0.0.0/api/recipes/initial', title, body, questionId, maxtime=20000} = Astro.props;
+const settings = '../../config.json'
+const n = 5
+let n_rec: Array<number>
+n_rec = []
+Array.from({ length: n }, (x, i) => {n_rec.push(i)})
+
+---
+<li class="likard">
+	<div class="likard-cont-mov" id={'div_' + questionId}>
+		<h3>
+			{body}
+		</h3>
+	<div id="loading"></div>
+
+	{n_rec.map((item) => (
+		<>
+		
+		</>
+	))}
+	</div>
+</li>
+
+<script is:inline define:vars={{maxtime, url}} defer>
+    // Function that grabs dynamicly delivered Recipes based on userId
+    // This will need to be inserted into the main form page, and not on each 
+    // component, as we only want to run it once!
+
+	//====================== API FETCH ======================
+
+	async function getRecipes(url) {
+		const response = await fetch(url)
+		return response.json()
+	}
+
+	async function getImage(url) {
+		const response = await fetch(url)
+		return response.json()
+	}
+	//====================== Recipe Loader ======================
+
+	const loader = document.querySelector('#loading')
+
+    async function loadContent() {
+		uID = await getCookie('uId')
+		console.log(uID)
+		const data = await getRecipes(`http://0.0.0.0/api/recommendation/${uID}/CF`)
+		console.log(data)
+		data.recipes.map((element, index) => {
+			const holder = document.getElementById(`recipe_holder_${index}`)
+			const image = holder.querySelector('#recipe_image')
+			const title = holder.querySelector('#title')
+			const content = holder.querySelector('#content')
+
+			holder.dataset.id=element.recipe_id
+			image.src = `http://0.0.0.0/api/images/${element.recipe_id}.jpg`
+			title.textContent = element.recipe_name
+			content.textContent = element.description
+			console.log(element.recipe_id)
+		})
+		console.log(data)
+		
+        // var arr = Array.prototype.slice.call( collections )
+        // arr.forEach(item => {
+        //     getImages(item.id, call=url)
+        // })
+        
+    }
+	async function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
+	
+    loadContent()
+</script>
+
+
+<style>
+
+
+	* { min-width: 0; min-height: 0; list-style: none;}
+
+	.likard {
+		margin-bottom: 1rem;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		padding: 0.15rem;
+		background-size: 400%;
+		border-radius: 0.5rem;
+		background-position: 100%;
+
+	}
+	.likard-cont-mov {
+		width: 96%;
+		padding: 1em 1.3em;
+		border-radius: 0.35rem;
+		opacity: 0.8;
+		background-color: white;
+		list-style: none;
+	}
+
+	.likard > .likard-cont-mov > .forms {
+		display: flex;
+		justify-content: center;
+		padding-top: 1rem;
+		padding-right: 1rem;
+		}
+	
+
+	.likard > .likard-cont-mov > form{
+		display: flex;
+		flex-direction: row;
+		list-style: none;
+		padding-left: 0px;
+	}
+	.likard > .likard-cont-mov > form > label{
+		flex-direction: column;
+		width: 20%;
+		list-style: none;
+	}
+
+    .poster {
+        width: 100%;
+        object-fit: contain;
+    }
+
+	.likard > .likard-cont-mov > div > form > span {
+		padding-left: 4rem;
+		display: inline-block;
+	}
+	
+	.likard > .likard-cont-mov > div > form > span > input {		
+		border: 0px;
+    	height: 1rem;
+		width: 100%;
+	}
+
+	.likard > .likard-cont-mov > form > span > label{
+		padding-left: 1rem;
+	}
+
+	
+	.likard > .likard-cont-mov > a{		
+		text-decoration: none;
+		line-height: 1.4;
+		color: var(--text-color);		
+	}
+
+	h2 {
+		margin: 0;
+		display: inline-block;
+		list-style: none;
+	}
+    
+    p {
+        margin-top: 0.75rem;
+        margin-bottom: 0;
+    }
+
+	.likard:is(:hover, :focus-within) {
+		background-position: 0;
+	}
+
+	.likard:is(:hover, :focus-within) h2 {
+		color: #221f20;
+		transform: translateX(2px);
+	}
+	
+</style>
+
+<!-- We have to make this global to avoid Astro hydrating it alongside the rest. -->
+<style is:global>
+	.clickableButton > [type=checkbox]:checked + img {
+	border: 2px solid #F1F1F1;
+}
+</style>

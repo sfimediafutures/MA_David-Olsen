@@ -18,8 +18,8 @@ class JSONEncoder(flask.json.JSONEncoder):
 app = flask.Flask(__name__)
 CORS(app)
 app.json_encoder = JSONEncoder
-client = MongoClient("MONGO-HOSTNAME")
-movies = client.movies.movie_posters
+client = MongoClient('mongodb://root:example@localhost:27017/')
+movies = client.movies.posters
 
 @app.route("/", methods = ['GET'])
 def home_page():
@@ -56,7 +56,7 @@ def get_credits(id):
 
 @app.route('/upload/<path:url>', methods=['GET'])
 def get_features(url):
-    location = 'LOCATION_FOR_TEMP_STORAGE'
+    location = 'tmp/'
     get_content(location, str(url))
     #i += 1
     return get_image_features(location, 100)

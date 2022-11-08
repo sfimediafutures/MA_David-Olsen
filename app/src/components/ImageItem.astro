@@ -1,0 +1,52 @@
+---
+export interface Props {
+    id: string,
+    src?: string,
+
+}
+
+const {id = id, src='https://via.placeholder.com/200X300?text='} = Astro.props;
+---
+    <>
+        <div class='secondary_movie' id={`item_${id}`}>
+            <div class="item_list">
+            <img src={`${src}${id}`}  id={`image_item_${id}`} alt="" class='movie' data-id='unset'>
+            </div>
+            <!-- <h5>Title<h5> -->
+        </div>
+    </>
+
+<style>
+
+    .secondary_movie {
+        display: flex;
+        flex-direction:column;
+        transform: translateX(calc(var(--slider-index) * -100%));
+    }
+
+    .secondary_movie  > h5{
+        color: #fff;
+        font-family: 'K2D', serif;
+        font-style: normal;
+        font-weight: 200;
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .item_list > img {
+        width: 100%;
+        border-radius: 4px;
+        height: auto;
+        
+        }
+    .item_list {
+        padding: 0 .3rem 0 0;
+        width: 150px;
+        height: 225px;
+        
+    }
+
+    .movie {
+        cursor: pointer;
+    }
+</style>

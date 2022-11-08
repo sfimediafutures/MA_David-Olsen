@@ -1,0 +1,451 @@
+---
+import ImageItem from "../components/ImageItem.astro"
+export interface Props {
+    title?: string
+}
+
+const n = 20
+let n_rec: Array<number>
+n_rec = []
+Array.from({ length: n }, (x, i) => {n_rec.push(i)})
+---
+<div>
+<div class="grad_container">
+    <div class="gradient_image" id="gradient_image"></div>
+    <img src="https://image.tmdb.org/t/p/w1280/s3TBrRGB1iav7gFOCNx3H31MoES.jpg" alt="" class="main_img" id='main_img'>
+</div>
+<section class="initial_homepage">
+    <h2>Please click on a movie for more information</h2>
+    <div>
+    
+    </div>
+</section>
+<section class="content" id='content'>
+    <div class="content_info">
+    <div class="primary_image">
+        <img id="primary_image" src="https://via.placeholder.com/200X300" alt="">
+    </div>
+    <div class="text_content">
+        <h5 id='item_title'>
+            Title!!
+        </h5>
+        <p id='item_body'>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </p>
+    </div>
+    <div class="color_tiles">
+        <div class="tile">
+            <div id="tile1"></div>
+            <p id="tile_text1">#111111</p>
+        </div>
+        <div class="tile">
+            <div id="tile2"></div>
+            <p id="tile_text2">#111111</p>
+        </div>
+        <div class="tile">
+            <div id="tile3"></div>
+            <p id="tile_text3">#111111</p>
+        </div>
+        <div class="tile">
+            <div id="tile4"></div>
+            <p id="tile_text4">#111111</p>
+        </div>
+    </div>
+    <div class="color_wheel_cont">
+        <div id='color_wheel' class="color_wheel"></div>
+    </div>
+    <div class="features">
+        <p id='saturation'>Saturation: </p>
+        <p id="sharpness">Sharpness: </p>
+        <p id="entropy">Entropy: </p>
+        <p id="contrast">Contrast: </p>
+        <p id="colorfullness">Colorfullness: </p>
+        <p id="brightness">Brightness: </p>
+    </div>
+    </div>
+    <h3 class="session_header">SIMILAR MOVIES</h3>
+    <section class="item_recommendation" id='third'>
+        {n_rec.map((i) => (
+            <ImageItem id={`${i}`}></ImageItem>
+        ))}
+    </section>
+</section>
+<h3 class='session_header'>IMDB TOP 20</h3>
+<section class="item_recommendation" id='first'>
+    {n_rec.map((i) => (
+        <ImageItem id={`${i}`}></ImageItem>
+    ))}
+</section>
+
+<h3 class='session_header'>IMDB POPULAR</h3>
+<section class="item_recommendation" id='second'>
+    {n_rec.map((i) => (
+        <ImageItem id={`${i}`}></ImageItem>
+    ))}
+</section>
+</div>
+<style>
+
+    .show {
+        animation: fadeIn .5s forwards;
+    }
+
+    @-webkit-keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @-webkit-keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+    .hidden {
+        -webkit-animation: fadeOut .2s;
+        animation: fadeOut .2s;
+    }
+    :root {
+        --slider-index: 0;
+    }
+    body {
+        background-color: #020A14;
+    }
+    .features {
+        margin: 2rem 0 0 2rem;
+    }
+    .features > p {
+        padding: 0;
+        margin: 0;
+        font-family: K2D;
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+    .tile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+    }
+    .tile > p {
+        padding: 0 0 0 1rem;
+    }
+    .color_tiles {
+        width: 10%;
+        margin: 2rem 0 0 0;
+    }
+    #tile1 {
+        height: 40px;
+        width: 40px;
+        background-color: #fff;
+    }
+    #tile2 {
+        height: 40px;
+        width: 40px;
+        background-color: #fff;
+    }
+    #tile3 {
+        height: 40px;
+        width: 40px;
+        background-color: #fff;
+    }
+    #tile4 {
+        height: 40px;
+        width: 40px;
+        background-color: #fff;
+    }
+    .color_wheel {
+        width: 180px;
+        height: 180px;
+        margin: 2rem 0 0 0;
+        border-radius: 50%;
+        background: conic-gradient(from 180deg at 50% 50%, #020A14 -52.5deg, #ACC5D0 43.12deg, #DC2630 136.88deg, #588495 223.05deg, #020A14 307.5deg, #ACC5D0 403.12deg);
+    }
+
+    .session_header {
+        margin: 0 0 1rem 3rem;
+        color: #fff;
+        font-family: 'K2D', serif;
+        font-weight: 200;
+        font-style: normal;
+    }
+    h2 {
+        text-align: center;
+        color: #fff;
+        font-family: 'K2D', serif;
+        font-style: normal;
+        font-weight: 200;
+        font-size: 25px;
+        line-height: 30px;
+    }
+    h3 {
+        color: #fff;
+        font-family: 'K2D', serif;
+        font-style: normal;
+    }
+
+    .text_content {
+        margin: 1rem 0 0 1rem;
+        width: 35%;
+    }
+
+    .text_content > h5 {
+        margin: 0;
+        padding: 0;
+        color: #fff;
+        font-family: 'K2D', serif;
+        font-style: normal;
+        font-weight: 200;
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    p {
+        color: #fff;
+        font-family: 'K2D', serif;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+    
+    body {
+        background-color: #181818;
+    }
+
+    .item_recommendation {
+        display: flex;
+        overflow-y: scroll;
+        overflow-y: hidden;
+        margin: 0rem 3rem 0 3rem;
+        
+
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    .item_recommendation::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+    }
+
+    .content {
+        display: none;
+        opacity: 0;
+        width: 100%;
+        flex-direction: column;
+    }
+    .content_info {
+        width: 100%;
+        margin: 2rem 3rem 3.5rem 3rem;
+        align-items: center;
+        display: flex;
+    }
+
+    .primary_image {
+        width: 200px;
+        height: 300px;
+        margin: 1rem 0 0 0;
+    }
+    #primary_image{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .grad_container {
+        width: 100%;
+        height: auto;
+    }
+    .main_img {
+        width: 100%;
+        height: auto;
+        z-index: -100;
+        position: absolute;
+        top: -10px;
+        object-fit: fill;
+    }
+    .gradient_image {
+        top: -10px;
+        z-index: -90;
+        object-fit: fill;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.13) 0%, #181818 20.00%) ;
+    }
+
+    #third {
+        padding: 0 0 5rem 0;
+    }
+</style>
+
+<script type="module" is:inline defer>
+    // ======================= API CALLS =======================
+	async function getData(url) {
+		const response = await fetch(url)
+		return response.json()
+	}
+
+    // ========================= MAIN ==========================
+
+    async function loadContent() {
+        // TOP20
+		const data = await getData('http://127.0.0.1:5000/movie/popular')
+		console.log(data)
+		data.map((element, index) => {
+            const top20 = document.getElementById('first')
+            const item = top20.querySelector(`#image_item_${index}`)
+            item.src = element.Poster
+            item.dataset.id = element.imdbID
+		 })
+
+        // Popular
+        const data2 = await getData('http://127.0.0.1:5000/movie/top_rated')
+		console.log(data2)
+		data2.map((element, index) => {
+            const top20 = document.getElementById('second')
+            const item = top20.querySelector(`#image_item_${index}`)
+            item.src = element.Poster
+            item.dataset.id = element.imdbID
+		 })
+    }
+
+
+    async function showDetails(movie_id) {
+        console.log(movie_id);
+        var data = await getData(`http://127.0.0.1:5000/movie/${movie_id}/credits`)
+        data = data[0]
+        console.log('data', data)
+        const content = document.getElementById('content')
+        content.classList.remove('hidden')
+        content.style.display='flex'
+        content.classList.add('show')
+        
+
+        // Get elements
+        const main_image = document.getElementById('main_img')
+        const primary_image = content.querySelector('#primary_image')
+        const title = content.querySelector('#item_title')
+        const bodytext = content.querySelector('#item_body')
+        const tile1 = content.querySelector('#tile1')
+        const tile2 = content.querySelector('#tile2')
+        const tile3 = content.querySelector('#tile3')
+        const tile4 = content.querySelector('#tile4')
+        const tile_text1 = content.querySelector('#tile_text1')
+        const tile_text2 = content.querySelector('#tile_text2')
+        const tile_text3 = content.querySelector('#tile_text3')
+        const tile_text4 = content.querySelector('#tile_text4')
+        const wheel = content.querySelector('#color_wheel')
+        const saturation = content.querySelector('#saturation')
+        const sharpness = content.querySelector('#sharpness')
+        const entropy = content.querySelector('#entropy')
+        const contrast = content.querySelector('#contrast')
+        const colorfullness = content.querySelector('#colorfullness')
+        const brightness = content.querySelector('#brightness')
+
+        // Set elemets
+        primary_image.src = data.Poster
+
+        //title.textContent = `${data.Title} (${data.Released})`
+        main_image.src = `https://image.tmdb.org/t/p/w1280/${data.backdrop}`
+        title.textContent = `${data.Title}`
+        bodytext.textContent = data.overview
+        tile1.style.backgroundColor = data.hex_0
+        tile2.style.backgroundColor = data.hex_1
+        tile3.style.backgroundColor = data.hex_2
+        tile4.style.backgroundColor = data.hex_3
+        tile_text1.textContent = data.hex_0
+        tile_text2.textContent = data.hex_1
+        tile_text3.textContent = data.hex_2
+        tile_text4.textContent = data.hex_3
+        saturation.textContent = `Saturation: ${data.saturation.toFixed(2)}`
+        sharpness.textContent = `Sharpness: ${data.sharpness.toFixed(2)}`
+        entropy.textContent = `Entropy: ${data.entropy.toFixed(2)}`
+        contrast.textContent = `Contrast: ${data.contrast.toFixed(2)}`
+        colorfullness.textContent = `Colorfullness: ${data.colorfulness.toFixed(2)}`
+        brightness.textContent = `Brightness: ${data.brightness.toFixed(2)}`
+
+        //wheel.style.background = `conic-gradient(${data.hex_0}, ${data.hex_1}, ${data.hex_2}, ${data.hex_3})`
+        wheel.style.background =`conic-gradient(from 180deg at 50% 50%, ${data.hex_0} -52.5deg, ${data.hex_1} 43.12deg, ${data.hex_2} 136.88deg, ${data.hex_3} 223.05deg, ${data.hex_0} 307.5deg, ${data.hex_1} 403.12deg)`
+        //data
+        // {
+		// "Director": "Christopher Nolan",
+		// "Genre": "Action, Adventure, Sci-Fi",
+		// "Poster": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+		// "Rated": "PG-13",
+		// "Released": "16 Jul 2010",
+		// "Runtime": "148 min",
+		// "Title": "Inception",
+		// "Type": "movie",
+		// "Writer": "Christopher Nolan",
+		// "Year": "2010",
+		// "_id": "6327b61a882674ef7e843e7e",
+		// "brightness": 33.18783783783784,
+		// "colorfulness": 46.77074405037433,
+		// "contrast": 61.42206376045267,
+		// "entropy": 4.640738551051051,
+		// "hex_0": "#dc2630",
+		// "hex_1": "#acc5d0",
+		// "hex_2": "#588495",
+		// "hex_3": "#164457",
+		// "hex_4": "#020a14",
+		// "imdbID": "tt1375666",
+		// "imdbRating": 8.8,
+		// "imdbVotes": 2308375,
+		// "saturation": 67.72186892775127,
+		// "sharpness": 3323.303837699806
+	    // } 
+        const main_img = document.getElementById('gradient_image')
+        console.log(main_img)
+        main_img.style.background = "linear-gradient(180deg, rgba(0, 0, 0, 0.13) 0%, #181818 70.00%)"
+    }
+
+    function goHome() {
+        const content = document.getElementById('content')
+        const main_img = document.getElementById('gradient_image')
+        
+        content.classList.add('hidden')
+        content.classList.remove('show')
+        setTimeout(() => {
+            
+            content.style.display='none';
+            main_img.style.background = "#181818"
+            
+        }, 200)
+
+        
+
+        console.log(content)
+        
+        
+    }
+    // ========================= LOGIC ==========================
+    document.addEventListener('click', e => {
+
+        if (e.target.matches('.movie')) {
+            console.log(e.target)
+            showDetails(e.target.dataset.id)
+        }
+
+        if (e.target.matches('.one') || e.target.matches('.header-img')){
+            console.log(e.target)
+            goHome()
+        }
+    });
+
+
+    // ========================= DEFER ==========================
+
+    loadContent()
+</script>
