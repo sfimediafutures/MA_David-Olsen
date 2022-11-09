@@ -1,0 +1,13 @@
+name: VISFEAT
+channels:
+  - defaults
+dependencies:
+  - scikit-learn
+  - flask
+  - flask-cors
+  - pymongo
+  - opencv
+  - scikit-image
+  - requests
+  - tqdm
+prefix: /opt/homebrew/Caskroom/miniconda/base/envs/VISFEAT
