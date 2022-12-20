@@ -1,0 +1,6 @@
+{
+    "API_SERVER_URL": "http://127.0.0.1:8000/",
+    "BASE_URL": "http://0.0.0.0",
+    "RECCOMENDER_URL": "http://127.0.0.1:5000",
+    "DOMAIN":  "https://visfeat.demo.mediafutures.no/"   
+}

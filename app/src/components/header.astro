@@ -30,8 +30,9 @@ const {title, headerColor='#231f20'} = Astro.props;
                 <rect width="76" height="41" fill="white"/>
                 </clipPath>
                 </defs>
-                </svg>
-                
+            </svg>
+            <h2>&#10005;</h2>
+            <img src='tv2_scaled.png'> 
         </div>
         <div class="sep"></div>
         
@@ -69,11 +70,24 @@ const {title, headerColor='#231f20'} = Astro.props;
 
     .one {
         padding: 0 1rem 0 0;
+        display: flex;
         cursor: pointer;
+        align-items: center;
+
+        flex-direction: row;
     }
-    .container > .one >img {
-        width: 80px;
-        padding: 0.5rem 1rem 0.5rem 1.5rem;
+    .one > h2 {
+        font-family: 'K2D', serif;
+        color: #ffffff;
+        font-size: 30px;
+        padding: 0;
+        padding: 0 .3rem 0 .6rem;
+        margin: 0;
+        font-weight: 200;
+    }
+    .container > .one > img {
+        width: 38px;
+        margin: -0.01rem 0 0 0;
     }
 
 </style>
