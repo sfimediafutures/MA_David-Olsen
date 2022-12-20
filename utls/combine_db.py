@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 client = MongoClient('mongodb://root:example@localhost:27017/')
 backdrops = client.movies.backdrops
-movies = client.movies.posters_sim
+movies = client.movies.posters
 
 backdrops_entries = backdrops.find()
 

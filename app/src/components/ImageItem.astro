@@ -5,7 +5,6 @@ export interface Props {
 
 }
 
-
 const {id = id, src='https://via.placeholder.com/200X300?text='} = Astro.props;
 ---
     <>
@@ -20,7 +19,7 @@ const {id = id, src='https://via.placeholder.com/200X300?text='} = Astro.props;
 <style>
 
     .secondary_movie {
-        display: flex;  
+        display: flex;
         flex-direction:column;
         transform: translateX(calc(var(--slider-index) * -100%));
     }
