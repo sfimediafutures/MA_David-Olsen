@@ -20,5 +20,5 @@ pnpm-debug.log*
 
 secrets.json
 
-data
+data/*
 .data
