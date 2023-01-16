@@ -6,8 +6,13 @@ export interface Props {
 
 const n = 20
 let n_rec: Array<number>
+const n_sim = 15
 n_rec = []
 Array.from({ length: n }, (x, i) => {n_rec.push(i)})
+
+let n_rec_sim: Array<number>
+n_rec_sim = []
+Array.from({ length: n_sim }, (x, i) => {n_rec_sim.push(i)})
 ---
 <div>
 <div class="grad_container">
@@ -65,7 +70,7 @@ Array.from({ length: n }, (x, i) => {n_rec.push(i)})
     </div>
     <h3 class="session_header">SIMILAR MOVIES</h3>
     <section class="item_recommendation" id='third'>
-        {n_rec.map((i) => (
+        {n_rec_sim.map((i) => (
             <ImageItem id={`${i}`}></ImageItem>
         ))}
     </section>
@@ -445,7 +450,7 @@ Array.from({ length: n }, (x, i) => {n_rec.push(i)})
 
     async function loadContent() {
         // TOP20
-		const data = await getData('https://visfeat.demo.mediafutures.no/movie/popular')
+		const data = await getData('https://visfeat.demo.mediafutures.no/api/movie/popular')
 		console.log(data)
 		data.map((element, index) => {
             const top20 = document.getElementById('first')
@@ -455,7 +460,7 @@ Array.from({ length: n }, (x, i) => {n_rec.push(i)})
 		 })
 
         // Popular
-        const data2 = await getData('https://visfeat.demo.mediafutures.no/movie/top_rated')
+        const data2 = await getData('https://visfeat.demo.mediafutures.no/api/movie/top_rated')
 		console.log(data2)
 		data2.map((element, index) => {
             const top20 = document.getElementById('second')
@@ -468,13 +473,21 @@ Array.from({ length: n }, (x, i) => {n_rec.push(i)})
 
     async function showDetails(movie_id) {
         console.log(movie_id);
-        var data = await getData(`https://visfeat.demo.mediafutures.no/movie/${movie_id}/credits`)
+        var data = await getData(`https://visfeat.demo.mediafutures.no/api/movie/${movie_id}/credits`)
         data = data[0]
         console.log('data', data)
         const content = document.getElementById('content')
         content.classList.remove('hidden')
         content.style.display='flex'
         content.classList.add('show')
+
+        data.Similar.map((element, index) => {
+            console.log('element',element)
+            const top20 = document.getElementById('third')
+            const item = top20.querySelector(`#image_item_${index}`)
+            item.src = element.Poster
+            item.dataset.id = element.imdbID
+		 })
         
 
         // Get elements

@@ -1,7 +1,13 @@
-# vis.features
+# Visual Feature Recommender
+This demonstration showcases a recommendation based on the visual features of a Movie Poster. It is based on the Master Thesis by David Olsen, UIB, co-supervised by Professor Mehdi Elahi, UIB and Lars Skjærven, TV2.
+
+The backend was developed by David Olsen, and the frontend and implementation was developed by Snorre Alvsvåg, MediaFutures. 
+
+Read the thesis paper here: 
+https://bora.uib.no/bora-xmlui/handle/11250/3001944
 
 ### Frontend 
-Contains frontend written in React based on https://github.com/trananhtuat/react-movie
+Built in Astro, using vanilla Javascript.
 
 ### Backend 
 Written in Python using Flask hooked up to a local MongoDB database using data from movie_posters.json
@@ -9,5 +15,5 @@ Written in Python using Flask hooked up to a local MongoDB database using data f
 ### Thesis-project
 Contains the source code for the master thesis project with some TV2 related components missing. Requires modifications to be ran without TV2 components / dependencies. (will be updated soon) 
 
-# Demo video
-[![Quick vis.features Frontend Demo](https://img.youtube.com/vi/LGkQ-Cnzf5Q/0.jpg)](https://www.youtube.com/watch?v=LGkQ-Cnzf5Q "Quick vis.features Frontend Demo")
+### Acknowledgements
+This product uses the TMDB API but is not endorsed or certified by TMDB
